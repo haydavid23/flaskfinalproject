@@ -7,8 +7,12 @@ class Person(db.Model):
     name = db.Column(db.String(80), unique=True, nullable=False)
     last_name = db.Column(db.String(80), unique=True, nullable=False)
     username = db.Column(db.String(80), unique=True, nullable=False)
+    email = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.Integer, unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
+    address = db.Column(db.String(120), unique=True, nullable=False)
+    city = db.Column(db.String(120), unique=True, nullable=False)
+    state = db.Column(db.String(120), unique=True, nullable=False)
+    zip_code = db.Column(db.String(120), unique=True, nullable=False)
 
     def __repr__(self):
         return '<Person %r>' % self.username
@@ -19,5 +23,10 @@ class Person(db.Model):
             "email": self.email,
             "name": self.name,
             "last_name": self.last_name,
-            "password": self.password
+            "password": self.password,
+            "address": self.address,
+            "city": self.city,
+            "state": self.state,
+            "zipcode": self.zip_code,
+
         }

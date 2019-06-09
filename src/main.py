@@ -28,15 +28,15 @@ def login():
         return jsonify({"msg": "Missing JSON in request"}), 400
 
     params = request.get_json()
-    email = params.get('email', None)
+    username = params.get('username', None)
     password = params.get('password', None)
 
-    if not email:
-        return jsonify({"msg": "Missing email parameter"}), 400
+    if not username:
+        return jsonify({"msg": "Missing username parameter"}), 400
     if not password:
         return jsonify({"msg": "Missing password parameter"}), 400
 
-    usercheck = Person.query.filter_by(email=email, password=password).first()
+    usercheck = Person.query.filter_by(username=username, password=password).first()
     if usercheck == None:
         return jsonify({"msg": "Bad username or password"}), 401
 
@@ -44,7 +44,7 @@ def login():
     #    return jsonify({"msg": "Bad username or password"}), 401
 
     # Identity can be any data that is json serializable
-    ret = {'jwt': create_jwt(identity=email)}
+    ret = {'jwt': create_jwt(identity=username)}
     return jsonify(ret), 200
 
 # Protect a view with jwt_required, which requires a valid jwt
@@ -80,7 +80,7 @@ def handle_person():
         if 'email' not in body:
             raise APIException('You need to specify the email', status_code=400)
 
-        user1 = Person(username=body['username'], email=body['email'], name=body['name'], password=body['password'], last_name=['last_name'])
+        user1 = Person(username=body['username'], email=body['email'], name=body['name'], password=body['password'], last_name=body['last_name'], address=body["address"], city=body["city"], state=body["state"], zip_code=body["zip_code"])
         db.session.add(user1)
         db.session.commit()
         return "ok", 200
