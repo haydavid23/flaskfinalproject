@@ -4,15 +4,15 @@ db = SQLAlchemy()
 
 class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), unique=True, nullable=False)
-    last_name = db.Column(db.String(80), unique=True, nullable=False)
+    name = db.Column(db.String(80), nullable=False)
+    last_name = db.Column(db.String(80), nullable=False)
     username = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(80), unique=True, nullable=False)
-    password = db.Column(db.Integer, unique=True, nullable=False)
-    address = db.Column(db.String(120), unique=True, nullable=False)
-    city = db.Column(db.String(120), unique=True, nullable=False)
-    state = db.Column(db.String(120), unique=True, nullable=False)
-    zip_code = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.Integer, nullable=False)
+    address = db.Column(db.String(120), nullable=False)
+    city = db.Column(db.String(120), nullable=False)
+    state = db.Column(db.String(120), nullable=False)
+    zip_code = db.Column(db.String(120), nullable=False)
 
     def __repr__(self):
         return '<Person %r>' % self.username

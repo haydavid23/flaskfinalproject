@@ -80,6 +80,10 @@ def handle_person():
         if 'email' not in body:
             raise APIException('You need to specify the email', status_code=400)
 
+        # user = Person.query.filter(email=body['email'])
+        # if len(user) > 0:
+        #       raise APIException('Email Already exist in the database', status_code=400)
+
         user1 = Person(username=body['username'], email=body['email'], name=body['name'], password=body['password'], last_name=body['last_name'], address=body["address"], city=body["city"], state=body["state"], zip_code=body["zip_code"])
         db.session.add(user1)
         db.session.commit()
