@@ -1,4 +1,4 @@
 # Description
- Back-End utilizing Flask(Python) and SQLAlchemy (Database)
+ Back-End utilizing Flask(Python) and SQLAlchemy (Database).
  JWT authentication
 
